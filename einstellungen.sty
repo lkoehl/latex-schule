@@ -1,0 +1,62 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{einstellungen}
+
+% Laden von Paketen
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage{cmbright}
+\RequirePackage[ngerman]{babel}
+\RequirePackage{ifthen}
+\RequirePackage{xifthen}
+\RequirePackage{geometry}
+\RequirePackage{fancyhdr}
+\RequirePackage{xcolor}
+\RequirePackage{xpatch}
+\RequirePackage{etoolbox}
+\RequirePackage{pgfpages}
+\RequirePackage{atbegshi}
+\RequirePackage{xsim}
+\RequirePackage{fontspec}
+\RequirePackage[shortlabels]{enumitem}
+\RequirePackage{multicol, multirow}
+\RequirePackage{tikz}
+\RequirePackage{ragged2e}
+\RequirePackage{qrcode}
+\RequirePackage{tabularx}
+\RequirePackage{makecell}
+\RequirePackage{multirow}
+\RequirePackage{tasks}
+\RequirePackage{wrapfig}
+\RequirePackage{hyperref}
+\RequirePackage{setspace}
+\RequirePackage{cellspace}
+\RequirePackage{colortbl}
+\RequirePackage{tikzducks}
+
+% Tikz Librarys
+\usetikzlibrary{calc,arrows.meta}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes}
+\usetikzlibrary{shapes.misc}
+
+% Längen einstellen
+\setstretch{1.125}
+\setlength{\parindent}{0pt}
+\setlength{\cellspacetoplimit}{4pt}
+\setlength{\cellspacebottomlimit}{4pt}
+
+\addparagraphcolumntypes{X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+\providecommand{\liniert}[2][0.5cm]{%
+  \begin{tikzpicture}[gray]
+    \path[use as bounding box](0,0)rectangle(\linewidth,-#2*#1-0.5\pgflinewidth);
+    \foreach \n in {1,...,#2}\draw(0 ,-#1*\n )--(\linewidth,-#1*\n );
+  \end{tikzpicture}}
+
+\providecommand{\kariert}[2][0.5cm]{%
+  \begin{tikzpicture}[lightgray,step=#1]
+    \pgfmathtruncatemacro\anzahl{(\linewidth)/#1} % maximale Anzahl Kästchen pro Zeile
+    \draw (0,0) rectangle (\anzahl*#1,#2*#1) (0,0) grid (\anzahl*#1,#2*#1);
+  \end{tikzpicture}\newline
+}
