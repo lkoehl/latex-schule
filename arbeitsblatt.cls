@@ -22,9 +22,9 @@
 
 \ifthenelse{\boolean{landscape}}
 {
-  \geometry{a4paper,bottom=2.5cm,top=2.5cm,left=2.5cm,right=2.5cm,headheight=15pt,landscape}
+	\geometry{a4paper,bottom=2.5cm,top=2.5cm,left=2.5cm,right=2.5cm,headheight=6pt,landscape}
 }{
-  \geometry{a4paper,bottom=2.5cm,top=2.5cm,left=2.5cm,right=2.5cm,headheight=15pt}
+  \geometry{a4paper,bottom=2.5cm,top=2.5cm,left=2.5cm,right=2.5cm,headheight=6pt}
 }
 
 \ifthenelse{\boolean{A5}}{
@@ -42,15 +42,15 @@
 }{}
 
 \setsansfont{MYRIADPRO}[
-  Path=/Users/lukaskohl/Documents/Schule/TeX/TexStyle/MYRIADPRO/,
-  Extension      = .OTF ,
-  UprightFont    = *-REGULAR,
-  BoldFont       = *-BOLD ,
-  ItalicFont     = *-ITALIC,
-  BoldItalicFont = *-BOLDIT ,
+ Path=/Users/lukaskohl/Documents/Schule/TeX/TexStyle/MYRIADPRO/,
+ Extension      = .OTF ,
+ UprightFont    = *-REGULAR,
+ BoldFont       = *-BOLD ,
+ ItalicFont     = *-ITALIC,
+ BoldItalicFont = *-BOLDIT ,
 ]
 
-\newfontface\headerfont{CarterOne-Regular.ttf}
+\newfontface\headerfont[Path=/Users/lukaskohl/Documents/Schule/TeX/TexStyle/]{CarterOne-Regular.ttf}
 
 \DeclareExerciseProperty{title}
 \DeclareExerciseProperty*{large}
@@ -61,6 +61,7 @@
     {%
       \GetExerciseProperty{counter}. \GetExerciseName:%
       \GetExercisePropertyT{title}{\hspace{.4em}\PropertyValue}
+      \vspace*{-0.15cm}
     }
   }{%
     \subsubsection*
@@ -87,13 +88,14 @@
   \IfExerciseBooleanPropertyTF{large}{%
     \subsection*
     {%
-      \GetExerciseName:%
-      {\hspace{.4em}}
+      \GetExerciseName~\GetExerciseProperty{counter}:%
+      \vspace*{-0.15cm}
     }
   }{%
     \subsubsection*
     {%
       \GetExerciseName~\GetExerciseProperty{counter}: %
+      \vspace*{-0.35cm}
     }\vspace*{1mm}
   }
 }
@@ -125,8 +127,8 @@
 \newcommand{\setheader}{
   \pagestyle{fancy}
   \xpretocmd\headrule{\color{lightgray}}{}{\PatchFailed}
-  \lhead{\bfseries\large {\headerfont \thema}}
-  \rhead{\color{gray}\large {\headerfont \lerngruppe}}
+  \lhead{\bfseries\large {\headerfont\thema}}
+  \rhead{\color{gray}\large {\headerfont\lerngruppe}}
   \chead{}
 }
 
