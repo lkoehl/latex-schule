@@ -1,0 +1,30 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{stickynote}
+
+\RequirePackage{xcolor}
+\RequirePackage{tikz}
+\RequirePackage[many]{tcolorbox}
+
+\definecolor{stickyyellow}{HTML}{FFF0AC}
+
+\newtcolorbox{stickybox}[2][]{
+	enhanced,
+	arc=0pt,
+	rotate=#2,
+	boxrule=0pt,
+	left=4pt,
+	right=4pt,
+	bottom=4pt,
+	top=8pt,
+	colback=stickyyellow,
+	drop small lifted shadow,
+	finish={
+		\node[%
+			rectangle,
+			fill=black,
+			fill opacity=0.05,
+			minimum width = 2cm, 
+		minimum height = 4mm] at (frame.north) {};
+	},
+	#1
+}
