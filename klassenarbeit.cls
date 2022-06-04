@@ -14,19 +14,21 @@
 \newcommand{\datum}[1]{\def\datum{#1}}
 \newcommand{\name}[1]{\def\name{#1}}
 \newcommand{\titel}[1]{\def\titel{#1}}
-\newcommand{\hinweis}[3]{\def\hinweis{
-	\par
-	\begin{tabularx}{\textwidth}{@{}Sl@{\hspace*{0.2cm}}S{X}}
-		\hline
-		\textbf{Hinweise:} & #1 \\
-		\textbf{Erlaubte Hilfsmittel:} & #2 \\
-		\textbf{Bearbeitungszeit:} & #3 Minuten \\
-		\hline
-	\end{tabularx}
-	\vspace{0.6cm}
-}}
+\newcommand{\hinweise}[1]{\def\hinweise{#1}}
+\newcommand{\hilfsmittel}[1]{\def\hilfsmittel{#1}}
+\newcommand{\bearbeitungszeit}[1]{\def\bearbeitungszeit{#1}}
 
-\newcommand{\logo}{\includegraphics[height=35pt]{logo}}
+\newcommand{\hinweis}{
+  \begin{tabularx}{\textwidth}{@{}Ol@{\hspace{6pt}}X}
+    \hline
+    \textbf{Hinweise:} & \hinweise\\
+    \textbf{Hilfsmittel:} & \hilfsmittel\\
+    \textbf{Bearbeitungszeit:} & \bearbeitungszeit\ Minuten \\
+    \hline
+  \end{tabularx}
+}
+
+%\newcommand{\logo}{\includegraphics[height=35pt]{logo}}
 
 \geometry{a4paper,top=0.75cm, bottom=1cm,
   left=2cm,
@@ -37,7 +39,7 @@
   heightrounded}
 
 \setsansfont{MYRIADPRO}[
-  Path=/Users/lukaskohl/Documents/Schule/TexStyle/MYRIADPRO/,
+  Path=/Users/lukaskohl/Documents/Schule/TeX/TexStyle/MYRIADPRO/,
   Extension      = .OTF ,
   UprightFont    = *-REGULAR,
   BoldFont       = *-BOLD ,
@@ -45,20 +47,16 @@
   BoldItalicFont = *-BOLDIT ,
 ]
 
+
 \DeclareExerciseProperty{title}
 \DeclareExerciseEnvironmentTemplate{aufgabe-template}
 {%
-  %\subsection*
-  \large \textbf
+  \subsection*
   {%
     \GetExerciseProperty{counter}. \GetExerciseName:%
     \GetExercisePropertyT{title}{\hspace{.4em}\PropertyValue}  
+    \vspace*{-0.15cm}
   }
-  \normalsize
-  \hfill
-  \\
-  % (\printtotalpoints)
-  % \vspace{0.1cm}
 }
 
 \DeclareExerciseType{aufgabeExs}{exercise-env=aufgabe,
@@ -71,38 +69,10 @@
   solution-template=aufgabe-template
 }
 
-\DeclareExerciseEnvironmentTemplate{bonus-template}
-{%
-  \IfExerciseBooleanPropertyTF{large}{%
-    \subsection*
-    {%
-      \GetExerciseName:%
-      {\hspace{.4em}}
-    }
-  }{%
-    \subsubsection*
-    {%
-      \GetExerciseName~\GetExerciseProperty{counter}: %
-    }\vspace*{1mm}
-  }
-}
-
-\DeclareExerciseType{bonusExs}{exercise-env=bonus,
-  solution-env=bonus-loesung,
-  exercise-name=Bonusaufgabe,
-  exercises-name=Bonusaufgaben,
-  solution-name=Lösung,
-  solutions-name=Lösungen,
-  exercise-template=bonus-template,
-  solution-template=bonus-template
-}
-
 \ifthenelse{\boolean{loesung}}{
   \xsimsetup{
     loesung/print=true,
     loesung/begin-hook={\color{blue}},
-    bonus-loesung/print=true,
-    bonus-loesung/begin-hook={\color{blue}}
   }
 }{
   \xsimsetup{
@@ -114,18 +84,17 @@
 \newcommand{\setheader}{
   \pagestyle{fancy}
   \xpretocmd\headrule{\color{lightgray}}{}{\PatchFailed}
-  \lhead{\logo}
-  \rhead{\datum\ \\ \lerngruppe-Kö}
+  %\lhead{\logo}
+  \lhead{}
+  \rhead{\datum\ \\ \lerngruppe-KÖL}
   \chead{{\bfseries \Large \titel}\vspace{0cm}}
-  {\large \bfseries Name: \name}\\
-  %\hinweis
-  
+  {\large \bfseries Name: \name}\\[4mm]
+  \hinweis  
 }
 
 \newcommand{\setfooter}{
   \fancyfoot{}
   \rfoot{\footnotesize Seite \thepage\ von \pageref{LastPage}}
-  %
   %\klassenarbeittable{\Hinweis}{\AnzahlAufgaben}
 }
 
