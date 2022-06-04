@@ -68,9 +68,9 @@
     \subsubsection*
     {%
       \GetExerciseName~\GetExerciseProperty{counter}:~%
-      \GetExercisePropertyT{title}{\PropertyValue}
-      \vspace*{-0.35cm}
-    }\vspace*{1mm}
+      \GetExercisePropertyT{title}{\PropertyValue \vspace*{0.15cm}}
+      \vspace*{-0.3cm}
+    }
   }
 }
 
@@ -84,7 +84,7 @@
   solution-template=aufgabe-template
 }
 
-\DeclareExerciseEnvironmentTemplate{bonus-template}
+\DeclareExerciseEnvironmentTemplate{sprinter-template}
 {%
   \IfExerciseBooleanPropertyTF{large}{%
     \subsection*
@@ -96,27 +96,27 @@
     \subsubsection*
     {%
       \GetExerciseName~\GetExerciseProperty{counter}: %
-      \vspace*{-0.35cm}
-    }\vspace*{1mm}
+      \vspace*{-0.25cm}
+    }
   }
 }
 
-\DeclareExerciseType{bonusExs}{exercise-env=bonus,
-  solution-env=bonus-loesung,
-  exercise-name=Bonusaufgabe,
-  exercises-name=Bonusaufgaben,
+\DeclareExerciseType{sprinterExs}{exercise-env=sprinter,
+  solution-env=sprinter-loesung,
+  exercise-name=Sprinteraufgabe,
+  exercises-name=Sprinteraufgaben,
   solution-name=Lösung,
   solutions-name=Lösungen,
-  exercise-template=bonus-template,
-  solution-template=bonus-template
+  exercise-template=sprinter-template,
+  solution-template=sprinter-template
 }
 
 \ifthenelse{\boolean{loesung}}{
   \xsimsetup{
     loesung/print=true,
     loesung/begin-hook={\color{blue}},
-    bonus-loesung/print=true,
-    bonus-loesung/begin-hook={\color{blue}}
+    sprinter-loesung/print=true,
+    sprinter-loesung/begin-hook={\color{blue}}
   }
 }{
   \xsimsetup{
