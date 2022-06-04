@@ -50,7 +50,8 @@
  BoldItalicFont = *-BOLDIT ,
 ]
 
-\newfontface\headerfont[Path=/Users/lukaskohl/Documents/Schule/TeX/TexStyle/]{CarterOne-Regular.ttf}
+%\newfontface\headerfont[Path=/Users/lukaskohl/Documents/Schule/TeX/TexStyle/]{CarterOne-Regular.ttf}
+\newfontface\headerfont[Path=/Users/lukaskohl/Documents/Schule/TeX/TexStyle/]{Inter-SemiBold.ttf}
 
 \DeclareExerciseProperty{title}
 \DeclareExerciseProperty*{large}
