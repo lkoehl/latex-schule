@@ -1,0 +1,71 @@
+\documentclass[]{arbeitsblatt}
+
+\thema{Beispiele: modul.qr}
+\lerngruppe{}
+
+\begin{document}
+
+\begin{verbatim}
+\qrcode{https://www.youtube.com/watch?v=psjiMFuiMO8}
+\end{verbatim}
+
+\qrcode{https://www.youtube.com/watch?v=psjiMFuiMO8}
+
+
+
+\begin{verbatim}
+\qrlink{https://www.youtube.com/watch?v=psjiMFuiMO8}{}
+\end{verbatim}
+
+\qrlink{https://www.youtube.com/watch?v=psjiMFuiMO8}{}
+
+
+
+\begin{verbatim}
+\qrlink{https://www.youtube.com/watch?v=psjiMFuiMO8}{Filmsequenz Interstellar}
+\end{verbatim}
+
+\qrlink{https://www.youtube.com/watch?v=psjiMFuiMO8}{Filmsequenz Interstellar}
+
+
+
+\begin{verbatim}
+\qrlink[0.5\textwidth]{https://www.youtube.com/watch?v=psjiMFuiMO8}{Filmsequenz Interstellar}
+\end{verbatim}
+
+\qrlink[0.5\textwidth]{https://www.youtube.com/watch?v=psjiMFuiMO8}{Filmsequenz Interstellar}
+
+
+
+\begin{verbatim}
+\qrlink{https://www.youtube.com/watch?v=psjiMFuiMO8}[www.youtube.de]{Filmsequenz Interstellar}
+\end{verbatim}
+
+\qrlink{https://www.youtube.com/watch?v=psjiMFuiMO8}[www.youtube.de]{Filmsequenz Interstellar}
+
+
+
+\begin{verbatim}
+\qrlink{https://www.youtube.com/watch?v=psjiMFuiMO8}[\url{https://www.youtube.com/watch?v=psjiMFuiMO8}]{Filmsequenz Interstellar}
+\end{verbatim}
+
+\qrlink{https://www.youtube.com/watch?v=psjiMFuiMO8}[\url{https://www.youtube.com/watch?v=psjiMFuiMO8}]{Filmsequenz Interstellar}
+
+
+
+\begin{verbatim}
+\begin{Center}
+  \textbf{Link zum Video:}\\[0.5\baselineskip]
+  \qrcode[height=2.2cm]{https://www.youtube.com/watch?v=psjiMFuiMO8}\\[0.25\baselineskip]
+  \url{https://www.youtube.com/watch?v=psjiMFuiMO8}
+\end{Center}
+\end{verbatim}
+
+\begin{Center}
+  \textbf{Link zum Video:}\\[0.5\baselineskip]
+  \qrcode[height=2.2cm]{https://www.youtube.com/watch?v=psjiMFuiMO8}\\[0.25\baselineskip]
+  \url{https://www.youtube.com/watch?v=psjiMFuiMO8}
+\end{Center}
+
+
+\end{document}
