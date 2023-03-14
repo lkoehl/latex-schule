@@ -1,0 +1,89 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{informatik-tools}
+
+\RequirePackage{xcolor}
+\RequirePackage{listings}
+\RequirePackage[many]{tcolorbox}
+%\RequirePackage{tikz-uml}
+
+\tcbuselibrary{listings,skins}
+
+%\tikzumlset{fill class=white}
+%\tikzumlset{fill template=white}
+%\tikzumlset{fill note=white}
+
+
+\definecolor{processingGreen}{HTML}{33997E}
+\definecolor{processingOrange}{HTML}{E2671A}
+\definecolor{processingGray}{HTML}{666666}
+\definecolor{processingPurple}{HTML}{7D4793}
+
+\lstdefinestyle{processing}{
+  language=Java,
+  frame=none,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=left,
+  numberstyle=\tiny\color{processingGray},
+  keywordstyle=\color{processingGreen},
+  commentstyle=\color{processingGray},
+  stringstyle=\color{processingPurple},
+  emph={String, int, float},
+  emphstyle=\color{processingOrange},
+  breaklines=false,
+  breakatwhitespace=true,
+  tabsize=3,
+  numbersep=8pt,
+}
+
+\lstdefinestyle{processingSmall}{
+  language=Java,
+  frame=none,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\footnotesize\ttfamily},
+  numbers=left,
+  numberstyle=\tiny\color{processingGray},
+  keywordstyle=\color{processingGreen},
+  commentstyle=\color{processingGray},
+  stringstyle=\color{processingPurple},
+  emph={String, int, float},
+  emphstyle=\color{processingOrange},
+  breaklines=false,
+  breakatwhitespace=true,
+  tabsize=3,
+  numbersep=8pt,
+}
+
+\newtcblisting{code}[1]{
+  opacityback=0,
+  enhanced jigsaw,
+  left=12pt,
+  right=4pt,
+  bottom=-4pt,
+  top=-4pt,
+  arc=0pt,
+  boxrule=0pt,
+  listing only,
+  listing style=processing,
+  #1
+}
+
+\newtcblisting{codeSmall}[1]{
+  opacityback=0,
+  enhanced jigsaw,
+  left=12pt,
+  right=4pt,
+  bottom=-4pt,
+  top=-4pt,
+  arc=0pt,
+  boxrule=0pt,
+  listing only,
+  listing style=processingSmall,
+  #1
+}

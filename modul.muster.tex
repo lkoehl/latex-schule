@@ -1,0 +1,114 @@
+\RequirePackage{tikz}
+\usetikzlibrary{patterns}
+
+% Wozu das noch. Kann ich nicht überall gray schreiben?
+\definecolor{muster}{named}{gray}
+
+
+% liniert
+\NewDocumentCommand \liniert {O{\linewidth} m O{0.8cm}} {%
+  \begin{tikzpicture}
+    \draw(0, 0); % Abstand zum oberen Rand wahren
+    \foreach \n in {1,...,#2} % Linien zeichnen
+    \draw[color=gray](0, -#3*\n )--(0.99*#1, -#3*\n );
+  \end{tikzpicture}%
+}
+
+
+% kariert
+\NewDocumentCommand \kariert {s O{0} m O{0.5cm} d<>} {%
+  \begin{tikzpicture}[baseline=(O.north)]
+    % Star option
+    \IfBooleanTF{#1}{% Größe mit festen Maßen festlegen
+      \ifstrequal{#2}{0}{%
+        \pgfmathsetlengthmacro{\width}{\linewidth-\pgflinewidth}
+      }{%
+        \pgfmathsetlengthmacro{\width}{#2-\pgflinewidth}
+      }
+      \pgfmathsetlengthmacro{\height}{#3}
+    }{% Größe als Anzahl Kästchen festlegen
+      \ifnumequal{#2}{0}{%
+        \pgfmathsetlengthmacro{\width}{
+          floor((\linewidth-\pgflinewidth)/#4)*#4
+        }
+      }{%
+        \pgfmathsetlengthmacro{\width}{#2*#4}
+      }%
+      \pgfmathsetlengthmacro{\height}{#3*#4}
+    }
+    \draw[color=muster,step=#4]
+    (0,0) rectangle (\width,-1*\height)
+    (0,0) grid (\width,-1*\height);
+    \node (O) at (0, -0.5) {};
+    \IfValueT{#5}{
+      \node[fill=white,anchor= west] at (0.25,-1) {#5};
+    }
+  \end{tikzpicture}
+}
+
+
+% Millimeterpapier
+\NewDocumentCommand \millimeter {s O{0} m} {%
+  \begin{tikzpicture}[baseline=(O.north)]
+    % Star option
+    \IfBooleanTF{#1}{ % Größe mit festen Maßen festlegen
+      \ifstrequal{#2}{0}
+      {  \pgfmathsetlengthmacro{\width}{\linewidth}  }
+      {  \pgfmathsetlengthmacro{\width}{#2}  }
+      \pgfmathsetlengthmacro{\height}{-1*#3}
+      %
+      \pgfmathsetlengthmacro{\anza}{\width-\pgflinewidth}
+      \pgfmathsetlengthmacro{\anzb}{\width-(0.5\pgflinewidth)}
+      \pgfmathsetlengthmacro{\anzc}{\width-(0.1\pgflinewidth)}
+    }{ %
+      \ifnumequal{#2}{0}
+      {  \pgfmathsetlengthmacro{\width}{\linewidth}  }
+      {  \pgfmathsetlengthmacro{\width}{(#2+1)*1cm}  }
+      \pgfmathsetlengthmacro{\height}{#3*1cm}
+      %
+      \pgfmathtruncatemacro{\anza}{(\width-\pgflinewidth)/1cm}
+      \pgfmathtruncatemacro{\anzb}{(\width-(0.5\pgflinewidth))/1cm}
+      \pgfmathtruncatemacro{\anzc}{(\width-(0.1\pgflinewidth))/1cm}
+    }
+    %
+    \draw[color=muster!50,step=1mm,very thin]
+    (0,0) grid (\anzc,\height);
+    \draw[color=muster,step=5mm,thin]
+    (0,0) grid (\anzb,\height);
+    \draw[color=muster,step=10mm,thick]
+    (0,0) grid (\anza,\height);
+  \end{tikzpicture}
+}
+
+
+% punktiert
+\pgfdeclarepatternformonly
+{dotgrid} 				% name
+{\pgfpoint{0pt}{0pt}}     % lower left
+{\pgfpoint{5mm}{5mm}}		% upper right
+{\pgfpoint{5mm}{5mm}}		% tile size
+{							% shape description
+  \pgfpathcircle{\pgfqpoint{2.5mm}{2.5mm}}{.7pt}
+  \pgfusepath{fill}
+}
+\NewDocumentCommand \punktiert {s O{0} m} {%
+  \begin{tikzpicture}[baseline=(O.north)]
+    % Star option
+    \IfBooleanTF{#1}{% Größe mit festen Maßen festlegen
+      \ifstrequal{#2}{0}{%
+        \pgfmathsetlengthmacro{\width}{\linewidth}
+      }{%
+        \pgfmathsetlengthmacro{\width}{#2}
+      }
+      \pgfmathsetlengthmacro{\height}{#3}
+    }{% Größe in Zentimetern
+      \ifnumequal{#2}{0}{%
+        \pgfmathsetlengthmacro{\width}{\linewidth}
+      }{%
+        \pgfmathsetlengthmacro{\width}{#2*5mm}
+      }%
+      \pgfmathsetlengthmacro{\height}{#3*5mm}
+    }
+    \fill [pattern=dotgrid,pattern color=muster] (0,0) rectangle (\width, \height);
+  \end{tikzpicture}
+}

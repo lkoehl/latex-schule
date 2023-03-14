@@ -1,0 +1,26 @@
+\RequirePackage{tabularx}
+\RequirePackage{setspace}
+\RequirePackage[column=O]{cellspace}
+\RequirePackage{colortbl}
+
+% Dieses Modul kann sehr vereinfacht werden mit der Nutzung von tblr.
+\RequirePackage{tabularray}
+
+
+\setlength{\cellspacetoplimit}{6pt}
+\setlength{\cellspacebottomlimit}{6pt}
+
+\providecommand{\settablespace}[1]{%
+  \setlength{\cellspacetoplimit}{#1}
+  \setlength{\cellspacebottomlimit}{#1}
+}
+
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+
+\addparagraphcolumntypes{X}
+\addparagraphcolumntypes{Y}
+\addparagraphcolumntypes{P}
+
+\RequirePackage{makecell}
+\renewcommand\cellalign{cc}

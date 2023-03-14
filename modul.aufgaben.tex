@@ -1,0 +1,33 @@
+\RequirePackage{xsim}
+\RequirePackage{tasks}
+
+\DeclareExerciseProperty{title}
+\DeclareExerciseProperty*{small}
+\DeclareExerciseEnvironmentTemplate{aufgabe-template}
+{%
+  \IfExerciseBooleanPropertyTF{small}{%
+    \subsubsection*
+    {%
+      \GetExerciseName~\GetExerciseProperty{counter}:~%
+      \GetExercisePropertyT{title}{\hspace{.4em}\PropertyValue}}
+    \vspace*{-0.15cm}
+  }
+  {%
+    \subsection*
+    {%
+      \GetExerciseName~\GetExerciseProperty{counter}:~%
+      \GetExercisePropertyT{title}{\hspace{.4em}\PropertyValue}
+      \vspace*{-0.15cm}
+    }
+  }
+}
+
+\DeclareExerciseType{aufgabeExs}{exercise-env=aufgabe,
+  solution-env=loesung,
+  exercise-name=Aufgabe,
+  exercises-name=Aufgaben,
+  solution-name=Lösung,
+  solutions-name=Lösungen,
+  exercise-template=aufgabe-template,
+  solution-template=aufgabe-template
+}

@@ -1,0 +1,110 @@
+\RequirePackage{xcolor}
+\RequirePackage{tikz}
+\RequirePackage[many]{tcolorbox}
+
+
+\definecolor{textRed}{HTML}{ED2054}
+\definecolor{textBlue}{HTML}{1D90D0}
+\definecolor{textGreen}{HTML}{66AE3E}
+
+\definecolor{bgRed}{HTML}{FDE4E0}
+\definecolor{bgBlue}{HTML}{E8F6FD}
+\definecolor{bgGreen}{HTML}{EBF4DE}
+
+\definecolor{stickyyellow}{HTML}{FFF0AC}
+
+\definecolor{boxblue}{HTML}{B3D4EC}
+\definecolor{boxgreen}{HTML}{D5E3B5}
+\definecolor{boxred}{HTML}{EEAA95}
+\definecolor{boxorange}{HTML}{FAD3AD}
+\definecolor{boxpurple}{HTML}{CBADC8}
+\definecolor{boxyellow}{HTML}{FFE3A8}
+
+
+\newenvironment{info}[1]
+{
+  \begin{fancyBox}{#1}{bgBlue}{textBlue}
+    }
+    {
+  \end{fancyBox}
+}
+
+\newenvironment{beispiel}[1]
+{
+  \begin{fancyBox}{#1}{bgGreen}{textGreen}
+    }
+    {
+  \end{fancyBox}
+}
+\newenvironment{wissen}[1]
+{
+  \begin{fancyBox}{#1}{bgRed}{textRed}
+    }
+    {
+  \end{fancyBox}
+}
+
+
+\newtcolorbox{fancyBox}[3]{
+  enhanced,
+  skin=bicolor,
+  arc=0pt,
+  left=4pt,
+  right=4pt,
+  bottom=4pt,
+  coltitle=white,
+  colframe=#3,
+  colback=#2,
+  colbacklower=white,
+  fonttitle=\bfseries,
+  attach boxed title to top left={yshift*=-\tcboxedtitleheight},
+  boxed title style={colback=#3,frame code={
+          \path[fill=#3](frame.north west)
+          -- ([xshift=2mm]frame.north east)
+          -- (frame.south east)
+          -- (frame.south west)
+          -- (frame.north west)
+          [sharp corners]-- cycle;
+        }
+    },
+  fonttitle=\bfseries,
+  title={#1},
+}
+
+
+
+\newtcolorbox{stickybox}[2][]{
+  enhanced,
+  arc=0pt,
+  rotate=#2,
+  boxrule=0pt,
+  left=4pt,
+  right=4pt,
+  bottom=4pt,
+  top=8pt,
+  colback=stickyyellow,
+  drop small lifted shadow,
+  finish={
+      \node[%
+        rectangle,
+        fill=black,
+        fill opacity=0.05,
+        minimum width = 2cm,
+        minimum height = 4mm] at (frame.north) {};
+    },
+  #1
+}
+
+\newtcbox{\stickyinline}[2][stickyyellow]{
+  enhanced,
+  arc=0pt,
+  rotate=#2,
+  boxrule=0pt,
+  left=4pt,
+  right=4pt,
+  bottom=4pt,
+  top=4pt,
+  on line,
+  tikznode,
+  colback=#1
+}

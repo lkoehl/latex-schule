@@ -3,9 +3,9 @@
 
 % Laden von Paketen
 \RequirePackage[T1]{fontenc}
-\RequirePackage[utf8]{inputenc}
-\RequirePackage{cmbright}
 \RequirePackage[ngerman]{babel}
+\RequirePackage{cmbright}
+\RequirePackage[hidelinks]{hyperref}
 \RequirePackage{ifthen}
 \RequirePackage{xifthen}
 \RequirePackage{geometry}
@@ -15,54 +15,62 @@
 \RequirePackage{etoolbox}
 \RequirePackage{pgfpages}
 \RequirePackage{atbegshi}
-\RequirePackage{xsim}
-\RequirePackage{fontspec}
 \RequirePackage[shortlabels]{enumitem}
 \RequirePackage{multicol, multirow}
-\RequirePackage{tikz}
 \RequirePackage{ragged2e}
-\RequirePackage{qrcode}
-\RequirePackage{tabularx}
-\RequirePackage{makecell}
-\RequirePackage{tasks}
-\RequirePackage{wrapfig}
-\RequirePackage{hyperref}
+\RequirePackage{amsmath, amssymb}
 \RequirePackage{setspace}
-\RequirePackage[column=S]{cellspace}
-\RequirePackage{colortbl}
-\RequirePackage{tikzducks}
+\RequirePackage[style=ddmmyy,datesep={.},calc]{datetime2}
+\RequirePackage{wrapfig}
+\RequirePackage{textualicomma}
+\RequirePackage{graphbox}
+\RequirePackage{MnSymbol}
+
+% Hier noch Modul draus machen
+\RequirePackage{informatik-tools}
+
+% Hier noch ein Paket für Symbole "Ordner" oder so. Daraus noch ein Modul machen
+% \RequirePackage{fontawesome5}
+
 
 % Tikz Librarys
+\RequirePackage{tikz}
+\RequirePackage{tikzpeople}
 \usetikzlibrary{calc,arrows.meta}
 \usetikzlibrary{positioning}
 \usetikzlibrary{shapes}
 \usetikzlibrary{shapes.misc}
 
+\input{modul.schriftarten.tex}
+\input{modul.muster.tex}
+\input{modul.tabellen.tex}
+\input{modul.aufgaben.tex}
+\input{modul.boxen.tex}
+\input{modul.qr.tex}
+
 % Längen einstellen
 \setstretch{1.125}
 \setlength{\parindent}{0pt}
-\setlength{\cellspacetoplimit}{4pt}
-\setlength{\cellspacebottomlimit}{4pt}
 
-\providecommand{\tableSpacingSmall}{\setlength{\cellspacetoplimit}{2pt}
-\setlength{\cellspacebottomlimit}{2pt}}
-\providecommand{\tableSpacingMedium}{\setlength{\cellspacetoplimit}{8pt}
-\setlength{\cellspacebottomlimit}{8pt}}
-\providecommand{\tableSpacingLarge}{\setlength{\cellspacetoplimit}{12pt}
-\setlength{\cellspacebottomlimit}{12pt}}
-
-\addparagraphcolumntypes{X}
-\newcolumntype{C}{>{\centering\arraybackslash}X}
-
-\providecommand{\liniert}[2][0.5cm]{%
-  \begin{tikzpicture}[gray]
-    \path[use as bounding box](0,0)rectangle(\linewidth,-#2*#1-0.5\pgflinewidth);
-    \foreach \n in {1,...,#2}\draw(0 ,-#1*\n )--(\linewidth,-#1*\n );
-  \end{tikzpicture}}
-
-\providecommand{\kariert}[2][0.5cm]{%
-  \begin{tikzpicture}[lightgray,step=#1]
-    \pgfmathtruncatemacro\anzahl{(\linewidth)/#1} % maximale Anzahl Kästchen pro Zeile
-    \draw (0,0) rectangle (\anzahl*#1,#2*#1) (0,0) grid (\anzahl*#1,#2*#1);
-  \end{tikzpicture}\newline
+\RequirePackage{siunitx} % Einheiten in der Physik
+\cslet{ver@cellspace.sty}{\somethingundefined} %fool siunitx wegen "cellspace"
+\sisetup{
+  locale = DE,
+  per-mode = symbol,
+  separate-uncertainty = true,
 }
+
+% Lückentexte
+\newcommand{\lineortext}[1]{\hspace{0.1cm}\underline{\hspace{0.25cm}\hphantom{\hspace{0.25cm}#1\hspace{0.25cm}}\hspace{0.25cm}}\hspace{0.1cm}}
+
+\newcommand{\betterhyph}{
+  \pretolerance=5000
+  \tolerance=9000
+  \emergencystretch=0pt
+  \righthyphenmin=3
+  \lefthyphenmin=3
+}
+
+\makeatletter
+\newcommand{\hrulefilll}{\leavevmode\leaders\hrule height -12pt depth 12.5pt\hfill\kern\z@}
+\makeatother
